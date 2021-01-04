@@ -1,0 +1,164 @@
+@import url("https://fonts.googleapis.com/css2?family=PT+Sans&display=swap");
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "PT Sans", sans-serif;
+}
+
+header {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  box-shadow: 110px 110px 5px grey;
+  display: flex;
+}
+
+h1 {
+  width: max-content;
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+}
+
+.person-info {
+  display: flex;
+  justify-content: space-between;
+  width: 10%;
+}
+.person-initial {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background-color: #fb4113;
+  font-size: 1.5rem;
+  color: #ffffff;
+  text-transform: uppercase;
+}
+
+.person-status {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  text-transform: capitalize;
+}
+
+#message-container {
+  overflow-y: auto;
+  height: 450px;
+  background-color: palegreen;
+  margin: 1rem 0;
+}
+
+.message {
+  display: grid;
+  grid-template-columns: repeat(12, auto);
+  margin: 4rem 1rem;
+}
+
+.sent {
+  background-color: #56a4fc;
+  grid-column: 9/ 13;
+  min-height: 3rem;
+  width: 100%;
+  border-radius: 1000px;
+  margin: 0.25rem;
+  padding: 1rem;
+  color: white;
+}
+
+.recived {
+  background-color: #e9e9eb;
+  grid-column: 1/ 6;
+  margin: 0.25rem;
+  min-height: 3rem;
+  width: 100%;
+  border-radius: 1000px;
+  padding: 1rem;
+}
+
+.sent .name {
+  color: white;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.8);
+  font-size: 1.3rem;
+  text-transform: uppercase;
+}
+.sent .text {
+  font-size: 1rem;
+}
+
+.recived .name {
+  color: black;
+  border-bottom: 1px solid rgba(155, 155, 155, 0.8);
+  font-size: 1.3rem;
+  text-transform: uppercase;
+}
+.recived .text {
+  font-size: 1rem;
+}
+
+.message-status{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    grid-column: 5/8;
+    height: 4rem;
+    background-color:rgb(100, 100, 100);
+    border-radius: 7px;
+    padding: 1rem;
+    color: #ffff;
+}
+
+.text-form {
+  width: 100%;
+}
+
+#text-box {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+input[type="text"] {
+  width: 50rem;
+  padding: 1rem;
+  font-size: 1.3rem;
+  border-radius: 1000px;
+  outline: none;
+  border: 2px solid black;
+}
+
+input[type="text"]:focus-within {
+  border: 2px solid #fb1332;
+}
+
+#send {
+  all: unset;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background-color: white;
+  outline: none;
+  margin-left: 2rem;
+  transition:transform all 400ms ease-in-out;
+}
+
+
+#send:active{
+    transform: scale(0.9);
+}
