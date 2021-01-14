@@ -30,8 +30,8 @@ nav {
 
 .person-info {
   display: flex;
-  justify-content: space-between;
-  width: 10%;
+  justify-content: space-arround;
+  width: 40%;
 }
 .person-initial {
   display: flex;
@@ -51,6 +51,7 @@ nav {
   flex-direction: column;
   justify-content: space-around;
   text-transform: capitalize;
+  margin-left:1rem
 }
 
 #message-container {

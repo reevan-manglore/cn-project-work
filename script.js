@@ -1,4 +1,6 @@
 
+
+
 const socket = io("http://localhost:3000");
 
 let name = "anonymus";
@@ -24,6 +26,7 @@ let  txtBox = document.querySelector('input[type = "text"]');
 
 sendBtn.addEventListener("click",e=>{
     e.preventDefault();
+    socket.emit("typing-status",{status:false})
     let txt = txtBox.value;
     console.log(txt);
     socket.emit("new-message-send",txt);
@@ -133,8 +136,26 @@ socket.on("user-disconect",msg=>{
 
 
  
-
+document.addEventListener("keyup",()=>{
+        if(txtBox.value.trim().length > 0){
+            console.log("typing");
+            socket.emit("typing-status",{status:true});
+        }
+        else {
+            socket.emit("typing-status",{status:false})
+        }
+})
  
+
+
+ socket.on("isTyping",(e)=>{
+    if(e.typing){
+        document.querySelector(".online-status").innerText = "typing..."
+    }
+    else {
+        document.querySelector(".online-status").innerText = "online";
+    }
+ })
 
 
 function login(name=null,logout=false){

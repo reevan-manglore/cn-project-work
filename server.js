@@ -4,8 +4,10 @@ const io = require("socket.io")(3000,{
     }
 });
 
-const users = {};
+console.log("server is running at port 3000");
 
+
+const users = {};
 
 let firstUser = "";
 let secondUser = "";
@@ -15,8 +17,11 @@ io.on("connection",socket=>{
     console.log("new user connected");
 
     socket.on("new-user",name=>{
-    console.log(name);
+    console.log(`name is ${name} and socket id is ${socket.id}`);
     users[socket.id] = name;
+    if(userCount > 0){
+        socket.broadcast.emit("user-connected",name);
+    } 
     if(userCount == 0){
         userCount++;
         firstUser = name;
@@ -26,7 +31,6 @@ io.on("connection",socket=>{
         io.to(socket.id).emit('user-connected', firstUser);
         userCount++
     }
-    socket.broadcast.emit("user-connected",name); 
     })
 
     socket.emit("chat-message","hello world");
@@ -36,14 +40,14 @@ io.on("connection",socket=>{
     })
 
     socket.on("typing-status",e=>{
-        console.log(`value of element  is ${e.typing}`)
-        if(e.typing){
+        console.log(`value of element  is ${e.status}`)
+        if(e.status){
             console.log("typing");
             socket.broadcast.emit("isTyping",{typing:true})
         }
         else{
             console.log("not typing");
-            socket.broadcast.emit("isTyping-status",{typing:false})
+            socket.broadcast.emit("isTyping",{typing:false})
         }
     })
 
@@ -51,7 +55,11 @@ io.on("connection",socket=>{
         console.log(`user ${users[socket.id]} disconected`);
         userCount--;
         socket.broadcast.emit("user-disconect",users[socket.id]);
-        if(firstUser == users[socket.id]){
+        if(userCount < 1){
+            firstUser = "";
+            secondUser = "";
+        }
+        else if(firstUser == users[socket.id]){
             firstUser =secondUser
         }
         delete users[socket.id];
